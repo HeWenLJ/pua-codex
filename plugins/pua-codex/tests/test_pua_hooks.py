@@ -3,6 +3,7 @@ import importlib
 import json
 import os
 from pathlib import Path
+import re
 import sys
 import tempfile
 import unittest
@@ -250,10 +251,31 @@ class PuaHookTests(unittest.TestCase):
         self.assertIn("pua_hook.py", serialized)
         self.assertIn("sys.path.insert", serialized)
 
+    def test_hooks_json_matchers_are_valid_regular_expressions(self):
+        hooks_json = PLUGIN_ROOT / "hooks" / "hooks.json"
+        data = json.loads(hooks_json.read_text(encoding="utf-8"))
+
+        def matcher_values(value):
+            if isinstance(value, dict):
+                if isinstance(value.get("matcher"), str):
+                    yield value["matcher"]
+                for child in value.values():
+                    yield from matcher_values(child)
+            elif isinstance(value, list):
+                for item in value:
+                    yield from matcher_values(item)
+
+        for matcher in matcher_values(data):
+            with self.subTest(matcher=matcher):
+                re.compile(matcher)
+
 
 class PuaDocumentationTests(unittest.TestCase):
     def test_readme_documents_every_skill_entrypoint(self):
-        readme = (PLUGIN_ROOT.parents[1] / "README.md").read_text(encoding="utf-8")
+        readme_path = PLUGIN_ROOT.parents[1] / "README.md"
+        if not readme_path.exists():
+            self.skipTest("repository README is not bundled in the installed plugin cache")
+        readme = readme_path.read_text(encoding="utf-8")
         skill_names = sorted(path.parent.name for path in (PLUGIN_ROOT / "skills").glob("*/SKILL.md"))
 
         self.assertIn("## Skill 入口说明", readme)
