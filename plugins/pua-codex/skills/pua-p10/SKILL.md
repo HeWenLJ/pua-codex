@@ -1,6 +1,6 @@
 ---
 name: pua-p10
-description: "PUA P10 alias for Codex. Codex PUA alias; invoke with `$pua-p10`."
+description: "Use when Codex should operate as P10/CTO；focuses on strategy, org topology, technical direction, and P9 management boundaries. Invoke with `$pua-p10`."
 license: MIT
 ---
 

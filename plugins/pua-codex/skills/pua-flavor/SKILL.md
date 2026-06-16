@@ -1,6 +1,6 @@
 ---
 name: pua-flavor
-description: "PUA flavor alias for Codex. Codex PUA alias; invoke with `$pua-flavor`."
+description: "Use when choosing or changing the PUA话术口味；reads flavor options and updates `~/.pua/config.json` without overwriting unrelated fields. Invoke with `$pua-flavor`."
 license: MIT
 ---
 

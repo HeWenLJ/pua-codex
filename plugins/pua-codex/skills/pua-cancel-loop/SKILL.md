@@ -1,6 +1,6 @@
 ---
 name: pua-cancel-loop
-description: "PUA cancel loop alias for Codex. Codex PUA alias; invoke with `$pua-cancel-loop`."
+description: "Use when an active PUA loop should be stopped；cleans loop state/worktree references and records the cancellation with evidence. Invoke with `$pua-cancel-loop`."
 license: MIT
 ---
 

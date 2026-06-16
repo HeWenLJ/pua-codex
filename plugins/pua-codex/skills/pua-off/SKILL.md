@@ -1,6 +1,6 @@
 ---
 name: pua-off
-description: "PUA off alias for Codex. Codex PUA alias; invoke with `$pua-off`."
+description: "Use when you want to disable PUA always-on mode；sets `always_on=false` and `feedback_frequency=0` while preserving config fields. Invoke with `$pua-off`."
 license: MIT
 ---
 

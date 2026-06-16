@@ -1,6 +1,6 @@
 ---
 name: pua-mama
-description: "PUA mama alias for Codex. Codex PUA alias; invoke with `$pua-mama`."
+description: "Use when you want the same verification red lines but with Chinese-mom nagging narration；keeps pressure friendly but persistent. Invoke with `$pua-mama`."
 license: MIT
 ---
 

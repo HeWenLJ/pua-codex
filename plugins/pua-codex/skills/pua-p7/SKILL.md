@@ -1,6 +1,6 @@
 ---
 name: pua-p7
-description: "PUA P7 alias for Codex. Codex PUA alias; invoke with `$pua-p7`."
+description: "Use when Codex should operate as a P7 senior engineer；plan, implement, self-review, verify, and deliver with `[P7-COMPLETION]`. Invoke with `$pua-p7`."
 license: MIT
 ---
 

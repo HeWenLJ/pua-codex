@@ -1,6 +1,6 @@
 ---
 name: pua-offline
-description: "PUA offline alias for Codex. Codex PUA alias; invoke with `$pua-offline`."
+description: "Use when PUA should run in offline/no-feedback mode；sets `offline=true` and disables feedback frequency without deleting other config. Invoke with `$pua-offline`."
 license: MIT
 ---
 

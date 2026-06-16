@@ -1,6 +1,6 @@
 ---
 name: pua-en
-description: "Put your AI on a Performance Improvement Plan. Forces exhaustive problem-solving with Western big-tech performance culture rhetoric and structured debugging. Trigger when: (1) task failed 2+ times or stuck tweaking same approach; (2) about to say 'I cannot', suggest manual work, or blame environment without verifying; (3) being passive—not searching, not reading source, just waiting; (4) user frustration: 'try harder', 'stop giving up', 'figure it out', 'again???', or similar. Also for complex debugging, env issues, config/deployment failures. All task types: code, config, research, writing, deployment, infra, API. Do NOT trigger on first-attempt failures or when a known fix is executing."
+description: "Use when an English PIP-style pressure prompt is better than中文PUA；forces Ownership, Dive Deep, evidence-first verification, and approach switching. Invoke with `$pua-en`."
 license: MIT
 ---
 

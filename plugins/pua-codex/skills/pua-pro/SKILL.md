@@ -1,6 +1,6 @@
 ---
 name: pua-pro
-description: "PUA Pro alias for Codex. Codex PUA alias; invoke with `$pua-pro`."
+description: "Use when you need the advanced PUA control plane；self-evolution notes, platform telemetry, KPI reports, and config commands. Invoke with `$pua-pro`."
 license: MIT
 ---
 

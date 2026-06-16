@@ -1,6 +1,6 @@
 ---
 name: pua-loop
-description: "PUA Loop alias for Codex. Codex PUA alias; invoke with `$pua-loop`."
+description: "Use when a task must keep iterating until a verify command or explicit stop condition passes；sets/runs the PUA loop protocol. Invoke with `$pua-loop`."
 license: MIT
 ---
 

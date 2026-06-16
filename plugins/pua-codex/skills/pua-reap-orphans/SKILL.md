@@ -1,6 +1,6 @@
 ---
 name: pua-reap-orphans
-description: "PUA reap-orphans alias for Codex. Codex PUA alias; invoke with `$pua-reap-orphans`."
+description: "Use when stale PUA loop/agent state may be left behind；scans and removes only confirmed orphan records, then reports evidence. Invoke with `$pua-reap-orphans`."
 license: MIT
 ---
 

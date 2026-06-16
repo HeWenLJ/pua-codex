@@ -251,5 +251,25 @@ class PuaHookTests(unittest.TestCase):
         self.assertIn("sys.path.insert", serialized)
 
 
+class PuaDocumentationTests(unittest.TestCase):
+    def test_readme_documents_every_skill_entrypoint(self):
+        readme = (PLUGIN_ROOT.parents[1] / "README.md").read_text(encoding="utf-8")
+        skill_names = sorted(path.parent.name for path in (PLUGIN_ROOT / "skills").glob("*/SKILL.md"))
+
+        self.assertIn("## Skill 入口说明", readme)
+        for skill_name in skill_names:
+            self.assertIn(f"`${skill_name}`", readme)
+
+    def test_alias_skill_descriptions_explain_effect_in_plugin_ui(self):
+        for skill_path in sorted((PLUGIN_ROOT / "skills").glob("*/SKILL.md")):
+            text = skill_path.read_text(encoding="utf-8")
+            description_line = next(
+                line for line in text.splitlines() if line.startswith("description:")
+            )
+
+            self.assertNotIn("alias for Codex", description_line, skill_path)
+            self.assertNotIn("Codex PUA alias", description_line, skill_path)
+
+
 if __name__ == "__main__":
     unittest.main()

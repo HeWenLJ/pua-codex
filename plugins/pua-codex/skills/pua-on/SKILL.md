@@ -1,6 +1,6 @@
 ---
 name: pua-on
-description: "PUA on alias for Codex. Codex PUA alias; invoke with `$pua-on`."
+description: "Use when you want to enable PUA always-on mode；sets `always_on=true` and restores feedback frequency if it was disabled. Invoke with `$pua-on`."
 license: MIT
 ---
 

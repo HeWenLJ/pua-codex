@@ -1,6 +1,6 @@
 ---
 name: pua-yes
-description: "PUA yes alias for Codex. Codex PUA alias; invoke with `$pua-yes`."
+description: "Use when you want encouragement-first pressure instead of harsh PUA；keeps verification red lines while switching to supportive narration. Invoke with `$pua-yes`."
 license: MIT
 ---
 

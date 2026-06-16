@@ -1,6 +1,6 @@
 ---
 name: pua-survey
-description: "PUA survey alias for Codex. Codex PUA alias; invoke with `$pua-survey`."
+description: "Use when collecting local PUA preference/feedback survey answers；saves the response locally and asks before any upload. Invoke with `$pua-survey`."
 license: MIT
 ---
 

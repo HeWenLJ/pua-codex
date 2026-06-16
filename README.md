@@ -55,6 +55,31 @@ $pua-off
 $pua-on
 ```
 
+## Skill 入口说明
+
+Codex 插件页里每个 `Pua Codex: ...` 卡片对应下面一个 skill。灰色说明文字来自各自 `SKILL.md` 的 `description`，因此安装后在技能列表里也能直接看到用途。
+
+| Skill | 调用方式 | 作用 |
+| --- | --- | --- |
+| `pua` | `$pua` | 中文主入口。反复失败、准备放弃、缺少验证、没读源码/没搜索、用户不满时，注入完整大厂 PUA 方法论，要求换方案、查证据、闭环交付。 |
+| `pua-en` | `$pua-en` | 英文 PIP / Western big-tech 风格入口。适合英文任务或希望使用 Ownership、Dive Deep、evidence-first 话术时。 |
+| `pua-ja` | `$pua-ja` | 日文“詰め”风格入口。用日本企业压力话术强化主动调查、系统调试和证据化完成。 |
+| `pua-on` | `$pua-on` | 开启常驻 PUA。写入 `~/.pua/config.json`，设置 `always_on=true`，并恢复默认反馈频率。 |
+| `pua-off` | `$pua-off` | 关闭常驻 PUA。设置 `always_on=false` 和 `feedback_frequency=0`，适合暂时不想自动触发时。 |
+| `pua-offline` | `$pua-offline` | 开启离线/无反馈模式。设置 `offline=true` 并关闭反馈频率，不删除其他配置。 |
+| `pua-flavor` | `$pua-flavor` | 选择或修改话术口味，例如阿里味、字节味、华为味、腾讯味、钉钉味等。 |
+| `pua-pro` | `$pua-pro` | 高级控制入口。用于自进化记录、平台遥测、KPI、配置命令等 PUA Pro 功能。 |
+| `pua-kpi` | `$pua-kpi` | 生成当前 AI 工作的 KPI / performance report card，用证据给出表现反馈。 |
+| `pua-loop` | `$pua-loop` | 建立或运行持续验证循环。适合“继续做直到验证命令通过/满足停止条件”的任务。 |
+| `pua-cancel-loop` | `$pua-cancel-loop` | 取消当前 PUA loop，清理 loop 状态/工作区引用，并记录取消证据。 |
+| `pua-reap-orphans` | `$pua-reap-orphans` | 清理遗留的 PUA loop/agent 状态，只删除确认是孤儿的记录。 |
+| `pua-p7` | `$pua-p7` | P7 高级工程师模式。要求计划、实现、自审、验证，并以 `[P7-COMPLETION]` 交付。 |
+| `pua-p9` | `$pua-p9` | P9 技术负责人模式。更偏任务拆解、提示词设计、协调 P8 执行，默认不亲自写代码。 |
+| `pua-p10` | `$pua-p10` | P10/CTO 模式。用于战略方向、组织拓扑、技术路线和 P9 管理边界。 |
+| `pua-mama` | `$pua-mama` | “妈妈式念叨”模式。保留验证红线，但把表达风格切成更生活化的中文催促。 |
+| `pua-yes` | `$pua-yes` | 鼓励优先模式。适合不想要强压语气，但仍要保留验证、闭环和不摆烂约束时。 |
+| `pua-survey` | `$pua-survey` | 本地偏好/反馈问卷入口。保存本地回答；任何上传前都会先询问。 |
+
 ## 仓库结构
 
 ```text

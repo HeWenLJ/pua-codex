@@ -1,6 +1,6 @@
 ---
 name: pua-kpi
-description: "PUA KPI alias for Codex. Codex PUA alias; invoke with `$pua-kpi`."
+description: "Use when you want a KPI/performance report card for the current AI work；loads PUA Pro scoring and outputs evidence-based performance feedback. Invoke with `$pua-kpi`."
 license: MIT
 ---
 

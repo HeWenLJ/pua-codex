@@ -1,6 +1,6 @@
 ---
 name: pua-p9
-description: "PUA P9 alias for Codex. Codex PUA alias; invoke with `$pua-p9`."
+description: "Use when Codex should operate as a P9 tech lead；write task prompts, coordinate P8 execution, and avoid coding unless reassigned. Invoke with `$pua-p9`."
 license: MIT
 ---
 
