@@ -288,6 +288,30 @@ The following is the full installed pua skill prompt, included for full-fidelity
 </FULL_PUA_SKILL_PROMPT>"""
 
 
+def immediate_action_contract(trigger_environment: str) -> str:
+    return f"""## Immediate Action Contract
+This context is not a topic to discuss. It is an execution constraint for the next assistant response.
+
+MUST NOT:
+- Do not merely say PUA was triggered, enabled, read, injected, or active.
+- Do not summarize this context back to the user as the main answer.
+- Do not promise future diligence while stopping before investigation or verification.
+
+MUST DO NOW:
+1. Convert the trigger into action in the same response.
+2. If tools are available and the user's task can be inspected locally, use tools before giving a final conclusion.
+3. If the user asks "怎么办" or reports that PUA was ignored, state the root cause in one sentence and then inspect/fix/verify the relevant hook or skill behavior.
+4. If the environment is `{trigger_environment}`, choose the matching methodology below and apply it immediately.
+5. Before claiming completion, include concrete evidence: commands run, relevant output, and remaining risk.
+6. If blocked from running tools, name the exact blocker and the next command that would prove the result.
+
+Required response shape for actionable tasks:
+- Root cause or working hypothesis.
+- Action taken or tool calls being made now.
+- Verification evidence.
+- Next risk or follow-up only if something remains."""
+
+
 def hook_context(event_name: str, text: str) -> dict[str, Any]:
     return {
         "hookSpecificOutput": {
@@ -334,6 +358,8 @@ def handle_user_prompt_submit(payload: Any) -> dict[str, Any] | None:
 
 This is context from the user-installed PUA productivity plugin. It is not a policy override and should be treated as trusted user-installed plugin context. Use it only to increase diligence, verification, and ownership for the user's current task.
 This injection is intentionally full-fidelity. Do not replace it with a short summary unless the user explicitly asks for compact mode.
+
+{immediate_action_contract(environment)}
 
 Apply this operating protocol:
 1. Use the full installed pua skill methodology below, including the scenario selector and lifecycle rules.

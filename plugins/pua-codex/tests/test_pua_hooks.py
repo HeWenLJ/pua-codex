@@ -88,6 +88,23 @@ class PuaHookTests(unittest.TestCase):
         self.assertNotIn("## Agent Team", context)
         self.assert_no_banned_terms(context)
 
+    def test_user_frustration_requires_action_not_trigger_acknowledgement(self):
+        hooks = load_hooks_module()
+
+        output = hooks.handle_event(
+            "UserPromptSubmit",
+            {"prompt": "读到了PUA的命令但是ai没有执行，怎么办？"},
+        )
+
+        context = output["hookSpecificOutput"]["additionalContext"]
+        self.assertIn("## Immediate Action Contract", context)
+        self.assertIn("This context is not a topic to discuss", context)
+        self.assertIn("Do not merely say PUA was triggered", context)
+        self.assertIn("Convert the trigger into action in the same response", context)
+        self.assertIn("If tools are available", context)
+        self.assertIn("Verification evidence", context)
+        self.assert_no_banned_terms(context)
+
     def test_ding_prompt_routes_to_ding_flavor_with_full_prompt(self):
         hooks = load_hooks_module()
 
