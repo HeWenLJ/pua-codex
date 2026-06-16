@@ -1,0 +1,37 @@
+{
+  "name": "pua-codex",
+  "version": "0.1.0+codex.20260616035558",
+  "description": "Codex-native PUA productivity coaching hooks and skills.",
+  "author": {
+    "name": "tanweai / local Codex port",
+    "url": "https://github.com/tanweai/pua"
+  },
+  "homepage": "https://github.com/tanweai/pua",
+  "repository": "https://github.com/tanweai/pua",
+  "license": "MIT",
+  "keywords": [
+    "pua",
+    "codex",
+    "hooks",
+    "productivity",
+    "verification",
+    "failure-patterns"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "PUA Codex",
+    "shortDescription": "Push Codex to verify, switch approaches, and close loops.",
+    "longDescription": "Codex-native port of tanweai/pua with lifecycle hooks for frustration triggers, repeated shell failures, compaction notes, stop-loop continuation, and integrity guard checks.",
+    "developerName": "tanweai / local Codex port",
+    "category": "Productivity",
+    "capabilities": [
+      "Hooks",
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "Use PUA mode for this task.",
+      "Turn on PUA verification pressure.",
+      "Retry with a different approach."
+    ]
+  }
+}

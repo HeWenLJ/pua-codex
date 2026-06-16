@@ -1,0 +1,87 @@
+{
+    "description":  "PUA Codex hooks: frustration triggers, failure-pattern reminders, local state continuity, integrity guard, and stop-loop continuation.",
+    "hooks":  {
+                  "UserPromptSubmit":  [
+                                           {
+                                               "hooks":  [
+                                                             {
+                                                                 "type":  "command",
+                                                                 "command":  "python3 -c \u0027import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\"PUA_CODEX_PLUGIN_ROOT\");roots+=([Path(e)] if e else []);cache=h/\".codex\"/\"plugins\"/\"cache\";roots+=([p.parents[1] for p in sorted(cache.glob(\"*/pua-codex/*/scripts/pua_hook.py\"),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\"plugins\"/\"pua-codex\");s=next((r/\"scripts\"/\"pua_hook.py\" for r in roots if (r/\"scripts\"/\"pua_hook.py\").is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\"pua-codex hook not found\");sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\"__main__\")\u0027 UserPromptSubmit",
+                                                                 "commandWindows":  "python -c \"import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\u0027PUA_CODEX_PLUGIN_ROOT\u0027);roots+=([Path(e)] if e else []);cache=h/\u0027.codex\u0027/\u0027plugins\u0027/\u0027cache\u0027;roots+=([p.parents[1] for p in sorted(cache.glob(\u0027*/pua-codex/*/scripts/pua_hook.py\u0027),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\u0027plugins\u0027/\u0027pua-codex\u0027);s=next((r/\u0027scripts\u0027/\u0027pua_hook.py\u0027 for r in roots if (r/\u0027scripts\u0027/\u0027pua_hook.py\u0027).is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\u0027pua-codex hook not found\u0027);sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\u0027__main__\u0027)\" UserPromptSubmit",
+                                                                 "timeout":  5,
+                                                                 "statusMessage":  "Checking PUA prompt trigger"
+                                                             }
+                                                         ]
+                                           }
+                                       ],
+                  "PostToolUse":  [
+                                      {
+                                          "matcher":  "Bash|shell_command|functions.shell_command",
+                                          "hooks":  [
+                                                        {
+                                                            "type":  "command",
+                                                            "command":  "python3 -c \u0027import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\"PUA_CODEX_PLUGIN_ROOT\");roots+=([Path(e)] if e else []);cache=h/\".codex\"/\"plugins\"/\"cache\";roots+=([p.parents[1] for p in sorted(cache.glob(\"*/pua-codex/*/scripts/pua_hook.py\"),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\"plugins\"/\"pua-codex\");s=next((r/\"scripts\"/\"pua_hook.py\" for r in roots if (r/\"scripts\"/\"pua_hook.py\").is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\"pua-codex hook not found\");sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\"__main__\")\u0027 PostToolUse",
+                                                            "commandWindows":  "python -c \"import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\u0027PUA_CODEX_PLUGIN_ROOT\u0027);roots+=([Path(e)] if e else []);cache=h/\u0027.codex\u0027/\u0027plugins\u0027/\u0027cache\u0027;roots+=([p.parents[1] for p in sorted(cache.glob(\u0027*/pua-codex/*/scripts/pua_hook.py\u0027),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\u0027plugins\u0027/\u0027pua-codex\u0027);s=next((r/\u0027scripts\u0027/\u0027pua_hook.py\u0027 for r in roots if (r/\u0027scripts\u0027/\u0027pua_hook.py\u0027).is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\u0027pua-codex hook not found\u0027);sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\u0027__main__\u0027)\" PostToolUse",
+                                                            "timeout":  5,
+                                                            "statusMessage":  "Checking PUA failure pattern"
+                                                        }
+                                                    ]
+                                      }
+                                  ],
+                  "PreCompact":  [
+                                     {
+                                         "matcher":  "manual|auto|*",
+                                         "hooks":  [
+                                                       {
+                                                           "type":  "command",
+                                                           "command":  "python3 -c \u0027import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\"PUA_CODEX_PLUGIN_ROOT\");roots+=([Path(e)] if e else []);cache=h/\".codex\"/\"plugins\"/\"cache\";roots+=([p.parents[1] for p in sorted(cache.glob(\"*/pua-codex/*/scripts/pua_hook.py\"),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\"plugins\"/\"pua-codex\");s=next((r/\"scripts\"/\"pua_hook.py\" for r in roots if (r/\"scripts\"/\"pua_hook.py\").is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\"pua-codex hook not found\");sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\"__main__\")\u0027 PreCompact",
+                                                           "commandWindows":  "python -c \"import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\u0027PUA_CODEX_PLUGIN_ROOT\u0027);roots+=([Path(e)] if e else []);cache=h/\u0027.codex\u0027/\u0027plugins\u0027/\u0027cache\u0027;roots+=([p.parents[1] for p in sorted(cache.glob(\u0027*/pua-codex/*/scripts/pua_hook.py\u0027),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\u0027plugins\u0027/\u0027pua-codex\u0027);s=next((r/\u0027scripts\u0027/\u0027pua_hook.py\u0027 for r in roots if (r/\u0027scripts\u0027/\u0027pua_hook.py\u0027).is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\u0027pua-codex hook not found\u0027);sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\u0027__main__\u0027)\" PreCompact",
+                                                           "timeout":  5,
+                                                           "statusMessage":  "Preparing PUA compaction note"
+                                                       }
+                                                   ]
+                                     }
+                                 ],
+                  "SessionStart":  [
+                                       {
+                                           "matcher":  "startup|resume|compact|clear",
+                                           "hooks":  [
+                                                         {
+                                                             "type":  "command",
+                                                             "command":  "python3 -c \u0027import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\"PUA_CODEX_PLUGIN_ROOT\");roots+=([Path(e)] if e else []);cache=h/\".codex\"/\"plugins\"/\"cache\";roots+=([p.parents[1] for p in sorted(cache.glob(\"*/pua-codex/*/scripts/pua_hook.py\"),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\"plugins\"/\"pua-codex\");s=next((r/\"scripts\"/\"pua_hook.py\" for r in roots if (r/\"scripts\"/\"pua_hook.py\").is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\"pua-codex hook not found\");sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\"__main__\")\u0027 SessionStart",
+                                                             "commandWindows":  "python -c \"import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\u0027PUA_CODEX_PLUGIN_ROOT\u0027);roots+=([Path(e)] if e else []);cache=h/\u0027.codex\u0027/\u0027plugins\u0027/\u0027cache\u0027;roots+=([p.parents[1] for p in sorted(cache.glob(\u0027*/pua-codex/*/scripts/pua_hook.py\u0027),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\u0027plugins\u0027/\u0027pua-codex\u0027);s=next((r/\u0027scripts\u0027/\u0027pua_hook.py\u0027 for r in roots if (r/\u0027scripts\u0027/\u0027pua_hook.py\u0027).is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\u0027pua-codex hook not found\u0027);sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\u0027__main__\u0027)\" SessionStart",
+                                                             "timeout":  5,
+                                                             "statusMessage":  "Restoring PUA state"
+                                                         }
+                                                     ]
+                                       }
+                                   ],
+                  "Stop":  [
+                               {
+                                   "hooks":  [
+                                                 {
+                                                     "type":  "command",
+                                                     "command":  "python3 -c \u0027import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\"PUA_CODEX_PLUGIN_ROOT\");roots+=([Path(e)] if e else []);cache=h/\".codex\"/\"plugins\"/\"cache\";roots+=([p.parents[1] for p in sorted(cache.glob(\"*/pua-codex/*/scripts/pua_hook.py\"),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\"plugins\"/\"pua-codex\");s=next((r/\"scripts\"/\"pua_hook.py\" for r in roots if (r/\"scripts\"/\"pua_hook.py\").is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\"pua-codex hook not found\");sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\"__main__\")\u0027 Stop",
+                                                     "commandWindows":  "python -c \"import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\u0027PUA_CODEX_PLUGIN_ROOT\u0027);roots+=([Path(e)] if e else []);cache=h/\u0027.codex\u0027/\u0027plugins\u0027/\u0027cache\u0027;roots+=([p.parents[1] for p in sorted(cache.glob(\u0027*/pua-codex/*/scripts/pua_hook.py\u0027),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\u0027plugins\u0027/\u0027pua-codex\u0027);s=next((r/\u0027scripts\u0027/\u0027pua_hook.py\u0027 for r in roots if (r/\u0027scripts\u0027/\u0027pua_hook.py\u0027).is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\u0027pua-codex hook not found\u0027);sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\u0027__main__\u0027)\" Stop",
+                                                     "timeout":  30,
+                                                     "statusMessage":  "Checking PUA loop"
+                                                 }
+                                             ]
+                               }
+                           ],
+                  "PreToolUse":  [
+                                     {
+                                         "matcher":  "Bash|shell_command|functions.shell_command|Read|Grep|Glob|Edit|Write|MultiEdit|apply_patch|WebSearch|WebFetch",
+                                         "hooks":  [
+                                                       {
+                                                           "type":  "command",
+                                                           "command":  "python3 -c \u0027import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\"PUA_CODEX_PLUGIN_ROOT\");roots+=([Path(e)] if e else []);cache=h/\".codex\"/\"plugins\"/\"cache\";roots+=([p.parents[1] for p in sorted(cache.glob(\"*/pua-codex/*/scripts/pua_hook.py\"),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\"plugins\"/\"pua-codex\");s=next((r/\"scripts\"/\"pua_hook.py\" for r in roots if (r/\"scripts\"/\"pua_hook.py\").is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\"pua-codex hook not found\");sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\"__main__\")\u0027 PreToolUse",
+                                                           "commandWindows":  "python -c \"import os,runpy,sys;from pathlib import Path;h=Path.home();roots=[];e=os.environ.get(\u0027PUA_CODEX_PLUGIN_ROOT\u0027);roots+=([Path(e)] if e else []);cache=h/\u0027.codex\u0027/\u0027plugins\u0027/\u0027cache\u0027;roots+=([p.parents[1] for p in sorted(cache.glob(\u0027*/pua-codex/*/scripts/pua_hook.py\u0027),key=lambda p:p.stat().st_mtime,reverse=True)] if cache.exists() else []);roots.append(h/\u0027plugins\u0027/\u0027pua-codex\u0027);s=next((r/\u0027scripts\u0027/\u0027pua_hook.py\u0027 for r in roots if (r/\u0027scripts\u0027/\u0027pua_hook.py\u0027).is_file()),None);sys.argv=[str(s)]+sys.argv[1:] if s else sys.exit(\u0027pua-codex hook not found\u0027);sys.path.insert(0,str(s.parent));runpy.run_path(str(s),run_name=\u0027__main__\u0027)\" PreToolUse",
+                                                           "timeout":  5,
+                                                           "statusMessage":  "Checking PUA integrity guard"
+                                                       }
+                                                   ]
+                                     }
+                                 ]
+              }
+}
