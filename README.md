@@ -2,7 +2,7 @@
 
 PUA Codex 是把 `tanweai/pua` 的 Claude Code PUA skill 迁移到 Codex 插件体系后的版本。它提供 Codex-native hooks 和一组同名技能，让 Codex 在反复失败、准备放弃、缺少验证证据、没有继续搜索/读源码、用户明显不满等场景下自动注入更强的排查与交付约束。
 
-这个仓库按 Codex Git marketplace 结构发布，同事 clone 或添加 marketplace 后即可安装，不需要修改用户名路径。
+这个仓库按 Codex Git marketplace 结构发布，clone 或添加 marketplace 后即可安装，不需要修改用户名路径。
 
 ## 功能
 
