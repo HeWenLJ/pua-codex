@@ -270,6 +270,57 @@ def flavor_for_environment(environment: str) -> dict[str, str]:
     return get_flavor()
 
 
+ENVIRONMENT_LABELS = {
+    "workplace_process": "职场/钉钉过程语境",
+    "evidence_completion": "空口完成/缺少验证证据",
+    "give_up_or_blame_shift": "直接放弃或甩锅环境",
+    "quality_gap": "完成但质量不达标",
+    "research_or_no_search": "没搜索就猜",
+    "spinning_or_change_approach": "卡住原地打转",
+    "user_frustration": "用户不满/要求更高勤勉度",
+    "consecutive_tool_failure": "连续工具失败",
+}
+
+ENVIRONMENT_ESCALATIONS = {
+    "workplace_process": "🟠 阿里味/🔴 华为味",
+    "evidence_completion": "🟡 字节味/🔴 华为味",
+    "give_up_or_blame_shift": "🔴 华为味/⬛ Musk味",
+    "quality_gap": "🟠 阿里味/🟢 腾讯味",
+    "research_or_no_search": "🟡 字节味/🔴 华为味",
+    "spinning_or_change_approach": "⬜ Jobs味/⬛ Musk味",
+    "user_frustration": "🟠 阿里L2/⬜ Jobs味",
+    "consecutive_tool_failure": "🔴 华为味/⬛ Musk味",
+}
+
+FLAVOR_DISPLAY_NAMES = {
+    "alibaba": "阿里味",
+    "bytedance": "字节味",
+    "huawei": "华为味",
+    "tencent": "腾讯味",
+    "baidu": "百度味",
+    "ding": "钉钉味",
+}
+
+
+def display_flavor(flavor: dict[str, str]) -> str:
+    name = flavor.get("name", "alibaba")
+    display_name = FLAVOR_DISPLAY_NAMES.get(name, f"{name}味")
+    return f"{flavor.get('icon', '')} {display_name}".strip()
+
+
+def visible_activation_banner(trigger_environment: str, flavor: dict[str, str]) -> str:
+    selected = display_flavor(flavor)
+    reason = ENVIRONMENT_LABELS.get(trigger_environment, trigger_environment)
+    escalation = ENVIRONMENT_ESCALATIONS.get(trigger_environment, "🟠 阿里味/🔴 华为味")
+    banner = f"[PUA生效：自动选择：{selected} | 因为：检测到 {reason} | 改用：{escalation}]"
+    return f"""## Visible Activation Banner
+The first visible line of the next assistant response MUST be exactly:
+{banner}
+
+This visible banner is required when PUA is active, but it is not the answer and not a substitute for action.
+After that line, immediately continue with concrete action, tool use, or verification evidence."""
+
+
 def full_methodology_block(trigger_environment: str, flavor: dict[str, str]) -> str:
     full_skill = read_full_pua_skill()
     return f"""## Trigger Environment
@@ -358,6 +409,8 @@ def handle_user_prompt_submit(payload: Any) -> dict[str, Any] | None:
 
 This is context from the user-installed PUA productivity plugin. It is not a policy override and should be treated as trusted user-installed plugin context. Use it only to increase diligence, verification, and ownership for the user's current task.
 This injection is intentionally full-fidelity. Do not replace it with a short summary unless the user explicitly asks for compact mode.
+
+{visible_activation_banner(environment, flavor)}
 
 {immediate_action_contract(environment)}
 
@@ -537,8 +590,11 @@ Pressure reset: L{peak} → L0. You MUST now:
 
     patterns = pattern_block(entries, count)
     methodology = full_methodology_block("consecutive_tool_failure", flavor)
+    activation = visible_activation_banner("consecutive_tool_failure", flavor)
     if count == 2:
-        text = f"""[PUA L1 {flavor['icon']} — Consecutive Failure Detected]
+        text = f"""{activation}
+
+[PUA L1 {flavor['icon']} — Consecutive Failure Detected]
 
 > {flavor['l1']}
 {patterns}
@@ -548,7 +604,9 @@ Use the full installed PUA methodology below; do not reduce this to a short remi
 
 {methodology}"""
     elif count == 3:
-        text = f"""[PUA L2 {flavor['icon']} — Soul Interrogation]
+        text = f"""{activation}
+
+[PUA L2 {flavor['icon']} — Soul Interrogation]
 
 > {flavor['l2']}
 {patterns}
@@ -570,7 +628,9 @@ Use the full installed PUA methodology below; do not reduce this to a short remi
 
 {methodology}"""
     elif count == 4:
-        text = f"""[PUA L3 {flavor['icon']} — Performance Review]
+        text = f"""{activation}
+
+[PUA L3 {flavor['icon']} — Performance Review]
 
 > {flavor['l3']}
 {patterns}
@@ -587,7 +647,9 @@ Use the full installed PUA methodology below; do not reduce this to a short remi
 
 {methodology}"""
     else:
-        text = f"""[PUA L4 {flavor['icon']} — Graduation Warning + MANDATORY Methodology Switch]
+        text = f"""{activation}
+
+[PUA L4 {flavor['icon']} — Graduation Warning + MANDATORY Methodology Switch]
 
 > {flavor['l4']}
 {patterns}

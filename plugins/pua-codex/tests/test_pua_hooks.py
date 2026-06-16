@@ -105,6 +105,22 @@ class PuaHookTests(unittest.TestCase):
         self.assertIn("Verification evidence", context)
         self.assert_no_banned_terms(context)
 
+    def test_user_frustration_requires_visible_activation_banner(self):
+        hooks = load_hooks_module()
+
+        output = hooks.handle_event(
+            "UserPromptSubmit",
+            {"prompt": "为什么还不行，换个方法，证据呢"},
+        )
+
+        context = output["hookSpecificOutput"]["additionalContext"]
+        self.assertIn("## Visible Activation Banner", context)
+        self.assertIn("[PUA生效：", context)
+        self.assertIn("自动选择：", context)
+        self.assertIn("The first visible line of the next assistant response MUST be exactly", context)
+        self.assertIn("After that line, immediately continue with concrete action", context)
+        self.assert_no_banned_terms(context)
+
     def test_ding_prompt_routes_to_ding_flavor_with_full_prompt(self):
         hooks = load_hooks_module()
 
@@ -151,6 +167,9 @@ class PuaHookTests(unittest.TestCase):
         context = second["hookSpecificOutput"]["additionalContext"]
         self.assertEqual("PostToolUse", second["hookSpecificOutput"]["hookEventName"])
         self.assertIn("PUA L1", context)
+        self.assertIn("## Visible Activation Banner", context)
+        self.assertIn("[PUA生效：", context)
+        self.assertIn("自动选择：", context)
         self.assertIn("FUNDAMENTALLY different approach", context)
         self.assertIn("## 三条铁律", context)
         self.assertIn("Trigger environment: consecutive_tool_failure", context)
