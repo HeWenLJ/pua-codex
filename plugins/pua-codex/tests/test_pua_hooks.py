@@ -229,6 +229,7 @@ class PuaHookTests(unittest.TestCase):
         data = json.loads(hooks_json.read_text(encoding="utf-8"))
         serialized = json.dumps(data, ensure_ascii=False)
 
+        self.assertEqual({"hooks"}, set(data))
         self.assertIn("UserPromptSubmit", data["hooks"])
         self.assertIn("PreCompact", data["hooks"])
         self.assertNotIn('"type": "prompt"', serialized)

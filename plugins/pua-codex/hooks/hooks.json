@@ -1,5 +1,4 @@
 {
-    "description":  "PUA Codex hooks: frustration triggers, failure-pattern reminders, local state continuity, integrity guard, and stop-loop continuation.",
     "hooks":  {
                   "UserPromptSubmit":  [
                                            {
